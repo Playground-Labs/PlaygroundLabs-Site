@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Playground Labs — apps we wish existed</title>
+  <meta name="description" content="Playground Labs is an independent product lab building and shipping its own apps. Useful, fast, a little fun." />
+
+  <!--
+    ponytail: zero-build static page.
+    Tailwind Play CDN + Google Fonts <link> are dev-grade, not production-tuned.
+    Production upgrade when LCP matters:
+      npx @tailwindcss/cli -i in.css -o output.css --minify   (purged CSS, drop the CDN)
+      self-host the two fonts as woff2 with font-display: swap  (drop the Google <link>)
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            // single locked accent: electric cobalt (sat < 80%). no purple.
+            accent: {
+              DEFAULT: '#2D5BFF',
+              ink: '#1E3FCC',
+            },
+          },
+          borderRadius: {
+            // locked radius system: cards 2xl, inputs lg, buttons full-pill
+            '2xl': '1rem',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* tokens kept tiny: motion only. colors live in tailwind config above. */
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(-1deg); }
+        50%      { transform: translateY(-14px) rotate(1deg); }
+      }
+      .anim-float { animation: float 6s ease-in-out infinite; }
+
+      /* below-the-fold: reveal on scroll */
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* above-the-fold hero: animate on load, never on scroll (avoids faded LCP) */
+      @keyframes loadFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+      .load-fade { opacity: 0; animation: loadFade .7s cubic-bezier(.16,1,.3,1) forwards; }
+      .load-fade.delay { animation-delay: .12s; }
+    }
+    /* reduced-motion: everything static and visible */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .load-fade { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-accent selection:text-white">
+
+  <!-- logo mark: swing set in a ring, recreated from the brand logo as inline SVG.
+       uses currentColor so it inverts cleanly between light/dark. defined once, reused via <use>. -->
+  <svg width="0" height="0" class="hidden" aria-hidden="true">
+    <symbol id="pl-logo" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="60" cy="60" r="53" stroke-width="5" />
+      <!-- top beam (overhangs both ends) -->
+      <path d="M27 42 L99 33" stroke-width="7" />
+      <!-- left A-frame -->
+      <path d="M34 40 L24 92" stroke-width="7" />
+      <path d="M34 40 L44 92" stroke-width="7" />
+      <!-- right A-frame -->
+      <path d="M86 38 L76 92" stroke-width="7" />
+      <path d="M86 38 L96 92" stroke-width="7" />
+      <!-- swing: two near-vertical chains + a flat seat -->
+      <path d="M52 40 L50 74" stroke-width="5" />
+      <path d="M64 38 L66 73" stroke-width="5" />
+      <path d="M47 76 L69 72" stroke-width="7" />
+    </symbol>
+  </svg>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-slate-50/80 backdrop-blur dark:border-slate-800/70 dark:bg-slate-950/80">
+    <nav class="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+      <a href="#top" class="flex items-center gap-2.5">
+        <svg class="h-9 w-9 text-slate-900 dark:text-slate-100" aria-hidden="true"><use href="#pl-logo" /></svg>
+        <span class="font-display text-base font-semibold tracking-tight">Playground Labs</span>
+      </a>
+
+      <div class="hidden items-center gap-7 md:flex">
+        <a href="#apps" class="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">Apps</a>
+        <a href="#about" class="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">About</a>
+        <a href="#hello" class="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-transform hover:bg-slate-800 active:scale-[0.97] dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white">Say hi</a>
+      </div>
+
+      <!-- mobile: condense to single CTA -->
+      <a href="#hello" class="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white active:scale-[0.97] dark:bg-slate-100 dark:text-slate-900 md:hidden">Say hi</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ============================ HERO ============================ -->
+    <section class="relative overflow-hidden">
+      <!-- soft brand-blue ambient wash, never AI-purple -->
+      <div aria-hidden="true" class="pointer-events-none absolute -top-24 right-[-10%] h-[480px] w-[480px] rounded-full bg-accent/15 blur-3xl dark:bg-accent/20"></div>
+
+      <div class="mx-auto grid min-h-[calc(100dvh-68px)] max-w-7xl grid-cols-1 items-center gap-12 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:pt-16">
+        <!-- text column -->
+        <div class="load-fade lg:col-span-6">
+          <p class="mb-5 inline-flex items-center rounded-full border border-slate-200 px-3 py-1 text-xs font-medium tracking-wide text-slate-600 dark:border-slate-800 dark:text-slate-400">
+            Independent product lab
+          </p>
+          <h1 class="font-display text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+            We build the apps<br />
+            <span class="text-accent">we wish existed.</span>
+          </h1>
+          <p class="mt-6 max-w-[46ch] text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+            A small studio shipping our own apps. We pick problems we have, build them well, and keep them fun to use.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#apps" class="inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:bg-accent-ink hover:-translate-y-0.5 active:scale-[0.98]">
+              See our apps
+            </a>
+            <a href="#hello" class="inline-flex items-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-100 active:scale-[0.98] dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-900">
+              Say hi
+            </a>
+          </div>
+        </div>
+
+        <!-- visual column: playful floating phone mockup -->
+        <div class="load-fade delay lg:col-span-6 lg:col-start-7">
+          <div class="relative mx-auto w-full max-w-[300px] lg:ml-auto lg:mr-0">
+            <div class="anim-float">
+              <div class="rounded-[2.25rem] border border-slate-200 bg-white p-2.5 shadow-2xl shadow-slate-900/10 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/40">
+                <!-- TODO: replace with a real flagship app screenshot, 1170x2532 (9:19.5) -->
+                <img
+                  src="https://picsum.photos/seed/playground-labs-hero/600/1300"
+                  alt="Screenshot of a Playground Labs app"
+                  width="600" height="1300"
+                  class="aspect-[9/19.5] w-full rounded-[1.75rem] object-cover"
+                  loading="eager" />
+              </div>
+            </div>
+            <!-- little accent chip for play, single accent -->
+            <div class="anim-float absolute -left-4 top-10 hidden rounded-2xl bg-accent px-3.5 py-2 font-display text-sm font-semibold text-white shadow-lg shadow-accent/30 sm:block" style="animation-delay:-3s">
+              made by us
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ APPS (bento) ============================ -->
+    <section id="apps" class="mx-auto max-w-7xl scroll-mt-24 px-4 py-20 sm:px-6 lg:py-28">
+      <div class="reveal max-w-2xl">
+        <p class="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-accent">What we made</p>
+        <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+          Four apps, all ours.
+        </h2>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">
+          Each one started as something we wanted for ourselves, then got good enough to share.
+        </p>
+      </div>
+
+      <!-- 4 apps -> exactly 4 cells, tiles a clean 3x2 (2+1 / 1+2), no empty cell. mixed visuals. -->
+      <div class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- TODO: replace the 4 entries below with your real apps (name, line, screenshot) -->
+
+        <!-- wide feature cell: real screenshot (top-left, spans 2) -->
+        <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 sm:col-span-2">
+          <!-- TODO: real Tidepool screenshot, ~1200x600 -->
+          <img src="https://picsum.photos/seed/tidepool-budget/1200/600" alt="Tidepool app" class="h-48 w-full object-cover sm:h-56" loading="lazy" />
+          <div class="p-6 lg:p-7">
+            <h3 class="font-display text-xl font-semibold tracking-tight">Tidepool</h3>
+            <p class="mt-1.5 text-slate-600 dark:text-slate-400">Calm budgeting that shows where your money actually goes, no spreadsheets.</p>
+          </div>
+        </article>
+
+        <!-- gradient cell (brand blue, not AI-purple) (top-right) -->
+        <article class="reveal group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-accent to-accent-ink p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20 lg:p-7">
+          <span class="font-display text-4xl font-bold opacity-90">↻</span>
+          <div class="mt-10">
+            <h3 class="font-display text-xl font-semibold tracking-tight">Loop</h3>
+            <p class="mt-1.5 text-white/85">Habit tracking that forgives a missed day instead of punishing it.</p>
+          </div>
+        </article>
+
+        <!-- text cell on tinted surface (bottom-left) -->
+        <article class="reveal group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 lg:p-7">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-accent/10 font-display text-xl font-bold text-accent">S</span>
+          <div class="mt-8">
+            <h3 class="font-display text-xl font-semibold tracking-tight">Sprout</h3>
+            <p class="mt-1.5 text-slate-600 dark:text-slate-400">Plant care reminders that learn your home instead of nagging you.</p>
+          </div>
+        </article>
+
+        <!-- wide screenshot cell (bottom-right, spans 2) -->
+        <article class="reveal group relative flex overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 sm:col-span-2">
+          <!-- TODO: real Marble screenshot, ~600x800 -->
+          <img src="https://picsum.photos/seed/marble-notes/600/800" alt="Marble app" class="w-32 shrink-0 object-cover sm:w-44 lg:w-52" loading="lazy" />
+          <div class="flex flex-col justify-center p-6 lg:p-7">
+            <h3 class="font-display text-xl font-semibold tracking-tight">Marble</h3>
+            <p class="mt-1.5 text-slate-600 dark:text-slate-400">Notes that stay out of your way until the moment you need them back.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ ETHOS (centered statement) ============================ -->
+    <section id="about" class="scroll-mt-24 border-y border-slate-200 bg-white px-4 py-24 dark:border-slate-800 dark:bg-slate-900 sm:px-6 lg:py-32">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <h2 class="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+          We are a few people who like making things.
+        </h2>
+        <p class="mx-auto mt-6 max-w-[60ch] text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          No roadmap theater, no growth hacks. We build small, ship when it feels right, and keep using everything we make. If it stops being good, we fix it or we retire it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ CTA + FOOTER ============================ -->
+    <section id="hello" class="scroll-mt-24 px-4 py-24 sm:px-6 lg:py-32">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+          Want to follow what we are building?
+        </h2>
+        <p class="mx-auto mt-4 max-w-[50ch] text-lg text-slate-600 dark:text-slate-400">
+          Drop us a line. We read everything and we like hearing what you are missing.
+        </p>
+        <a href="mailto:hello@playgroundlabs.app" class="mt-8 inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:bg-accent-ink hover:-translate-y-0.5 active:scale-[0.98]">
+          Say hi
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 px-4 py-10 dark:border-slate-800 sm:px-6">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
+      <div class="flex items-center gap-2.5">
+        <svg class="h-8 w-8 text-slate-900 dark:text-slate-100" aria-hidden="true"><use href="#pl-logo" /></svg>
+        <span class="font-display text-sm font-semibold tracking-tight">Playground Labs</span>
+      </div>
+      <nav class="flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+        <a href="#apps" class="transition-colors hover:text-slate-900 dark:hover:text-slate-100">Apps</a>
+        <a href="#about" class="transition-colors hover:text-slate-900 dark:hover:text-slate-100">About</a>
+        <a href="mailto:hello@playgroundlabs.app" class="transition-colors hover:text-slate-900 dark:hover:text-slate-100">Email</a>
+      </nav>
+      <p class="text-sm text-slate-400 dark:text-slate-500">© 2026 Playground Labs</p>
+    </div>
+  </footer>
+
+  <script>
+    // scroll-reveal: IntersectionObserver only (no scroll listeners). storytelling on scroll.
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e, i) {
+          if (e.isIntersecting) {
+            // light stagger for siblings entering together
+            setTimeout(function () { e.target.classList.add('in'); }, i * 70);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
