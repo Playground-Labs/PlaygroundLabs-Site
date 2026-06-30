@@ -42,7 +42,7 @@ img { display: block; }
   z-index: 100;
 }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand img { width: 34px; height: 34px; object-fit: contain; mix-blend-mode: multiply; }
+.brand-logo { width: 34px; height: 34px; color: var(--ink); display: block; }
 .wordmark { font-weight: 500; font-size: 18px; line-height: 1; letter-spacing: -0.3px; color: var(--ink); }
 .wordmark .dot { color: var(--accent); font-size: 26px; }
 
