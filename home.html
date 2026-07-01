@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
 
@@ -16,31 +17,37 @@
   <nav class="nav">
     <a class="brand" href="home.html">
       <img class="brand-logo" src="assets/pl-logo.png" alt="Playground Labs" />
-      <span class="wordmark">Playground Labs<span class="period">.</span></span>
+      <span class="wordmark">Playground Labs<span class="period" data-dot>.</span></span>
     </a>
     <div class="nav-links">
-      <a href="home.html" class="active">Home</a>
-      <a href="apps.html">Apps</a>
-      <a href="team.html">Team</a>
+      <a href="apps.html" data-preview="apps">Apps</a>
+      <a href="team.html" data-preview="team">Team</a>
+      <a href="contact.html" data-preview="clear">Contact</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <header class="hero">
-    <p class="eyebrow label">Independent App Studio</p>
-    <div class="d-light">There are</div>
-    <div class="d-bold"><span>no rules</span><span class="accent">.</span></div>
-    <p class="subtext">We make apps we want to exist. Small team. Big ideas. No clients.</p>
+    <p class="eyebrow label anim" data-enter="100">Independent App Studio</p>
+    <div class="d-light anim" data-enter="260">There are</div>
+    <div class="d-bold anim" data-enter="460"><span>no rules</span><span class="accent anim anim-spring" data-enter="700" style="display:inline-block;">.</span></div>
+    <p class="subtext anim" data-enter="860">We make apps we want to exist. Small team. Big ideas. No bloat.</p>
+
+    <!-- scroll cue -->
+    <div class="scroll-cue anim" data-enter="1100">
+      <span>Keep Scrolling</span>
+      <svg class="chevron" width="14" height="8" viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1L7 7L13 1" stroke="#CCCCCC" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </div>
   </header>
 
   <div class="rule"></div>
 
   <!-- OUR APPS -->
   <section class="section" id="work">
-    <p class="label">Our Apps</p>
+    <p class="label anim" data-reveal data-reveal-delay="0">02 · Our Apps</p>
     <div class="apps-grid">
 
-      <article class="app-card">
+      <article class="app-card anim" data-reveal data-reveal-delay="60">
         <div class="box card--dark" style="background:#0D1117;">
           <span class="plat">iOS · 2025</span>
           <div>
@@ -51,7 +58,7 @@
         <p class="desc">Travel journaling, reimagined. Capture moments as you move.</p>
       </article>
 
-      <article class="app-card">
+      <article class="app-card anim" data-reveal data-reveal-delay="160">
         <div class="box card--light" style="background:#F0EBE1;">
           <span class="plat">iOS · Android · 2024</span>
           <div>
@@ -62,7 +69,7 @@
         <p class="desc">Your reading life, organized. Track progress, write notes, stay curious.</p>
       </article>
 
-      <article class="app-card">
+      <article class="app-card anim" data-reveal data-reveal-delay="260">
         <div class="box card--dark" style="background:#101A28;">
           <span class="plat">iOS · 2024</span>
           <div>
@@ -78,9 +85,9 @@
 
   <div class="rule"></div>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <p class="label">About</p>
+  <!-- ABOUT (quieter closing beat) -->
+  <section class="about about--quiet anim" id="about" data-reveal>
+    <p class="label">03 · About</p>
     <div>
       <p class="lead">We're a small, independent studio. We make apps because we want them to exist — not because someone asked us to.</p>
       <p class="body">No clients, no roadmaps written by committee. Just a tight team with strong opinions and the conviction to ship.</p>
@@ -95,5 +102,6 @@
     <span class="tagline">No rules.</span>
   </footer>
 
+  <script src="app.js"></script>
 </body>
 </html>

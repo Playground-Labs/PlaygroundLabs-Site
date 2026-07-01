@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
 
@@ -16,12 +17,12 @@
   <nav class="nav">
     <a class="brand" href="home.html">
       <img class="brand-logo" src="assets/pl-logo.png" alt="Playground Labs" />
-      <span class="wordmark">Playground Labs<span class="period">.</span></span>
+      <span class="wordmark">Playground Labs<span class="period" data-dot>.</span></span>
     </a>
     <div class="nav-links">
-      <a href="home.html">Home</a>
       <a href="apps.html" class="active">Apps</a>
-      <a href="team.html">Team</a>
+      <a href="team.html" data-preview="team">Team</a>
+      <a href="contact.html" data-preview="clear">Contact</a>
     </div>
   </nav>
 
@@ -33,7 +34,7 @@
 
   <!-- APP 01: DRIFT (info left / screens right) -->
   <section class="app-row">
-    <div>
+    <div class="anim" data-reveal data-reveal-delay="0">
       <div class="app-meta">
         <span class="idx">01</span>
         <span class="plat">iOS · 2025</span>
@@ -50,7 +51,7 @@
         <div class="feature"><span class="flabel">Export</span><span class="ftext">Beautiful PDF journals and shareable trip links.</span></div>
       </div>
     </div>
-    <div class="shots">
+    <div class="shots anim" data-reveal data-reveal-delay="120">
       <!-- TODO: real Drift screenshots (portrait ~620x680) -->
       <div class="slot r16 shot"><span>Drift screenshot</span></div>
       <div class="slot r16 shot"><span>Drift screenshot</span></div>
@@ -59,12 +60,12 @@
 
   <!-- APP 02: NOOK (screens left / info right) -->
   <section class="app-row reverse">
-    <div class="shots">
+    <div class="shots anim" data-reveal data-reveal-delay="120">
       <!-- TODO: real Nook screenshots (portrait ~620x680) -->
       <div class="slot r16 shot"><span>Nook screenshot</span></div>
       <div class="slot r16 shot"><span>Nook screenshot</span></div>
     </div>
-    <div>
+    <div class="anim" data-reveal data-reveal-delay="0">
       <div class="app-meta">
         <span class="idx">02</span>
         <span class="plat">iOS · Android · 2024</span>
@@ -85,7 +86,7 @@
 
   <!-- APP 03: TEMPO (info left / screens right) -->
   <section class="app-row">
-    <div>
+    <div class="anim" data-reveal data-reveal-delay="0">
       <div class="app-meta">
         <span class="idx">03</span>
         <span class="plat">iOS · 2024</span>
@@ -102,7 +103,7 @@
         <div class="feature"><span class="flabel">Watch</span><span class="ftext">Full Apple Watch companion app.</span></div>
       </div>
     </div>
-    <div class="shots">
+    <div class="shots anim" data-reveal data-reveal-delay="120">
       <!-- TODO: real Tempo screenshots (portrait ~620x680) -->
       <div class="slot r16 shot"><span>Tempo screenshot</span></div>
       <div class="slot r16 shot"><span>Tempo screenshot</span></div>
@@ -115,5 +116,6 @@
     <span class="tagline">No rules.</span>
   </footer>
 
+  <script src="app.js"></script>
 </body>
 </html>

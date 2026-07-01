@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Playground Labs</title>
+  <meta name="description" content="Get in touch with Playground Labs. Got an idea, feedback, or just want to talk apps? We read everything ourselves." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/pl-logo.png" alt="Playground Labs" />
+      <span class="wordmark">Playground Labs<span class="period" data-dot>.</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="apps.html" data-preview="apps">Apps</a>
+      <a href="team.html" data-preview="team">Team</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <!-- SUB-HEADER -->
+  <div class="subhead anim" data-enter="100">
+    <span class="label">Get In Touch</span>
+    <span class="idx">03</span>
+  </div>
+
+  <!-- INTRO -->
+  <div class="contact-intro">
+    <p class="label anim" data-enter="160">We'd Love To Hear From You</p>
+    <div class="contact-headline anim" data-enter="280">Say hello<span class="accent">.</span></div>
+    <p class="contact-sub anim" data-enter="420">Got an idea, feedback, or just want to talk apps? We're a small team and we read everything ourselves.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- CONTACT GRID -->
+  <div class="contact-grid">
+
+    <!-- FORM (UI only) -->
+    <div class="anim" data-enter="520">
+      <p class="label" style="margin-bottom:32px;">Send A Message</p>
+      <!-- TODO: this form is UI only — wire it up to your email service or backend -->
+      <form class="form" novalidate>
+        <div class="field">
+          <label for="c-name">Name</label>
+          <input id="c-name" type="text" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="c-email">Email</label>
+          <input id="c-email" type="email" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="c-msg">Message</label>
+          <textarea id="c-msg" rows="4" placeholder="What's on your mind?"></textarea>
+        </div>
+        <button type="submit" class="btn-send">Send Message</button>
+      </form>
+    </div>
+
+    <!-- DIRECT INFO -->
+    <div class="anim" data-enter="600">
+      <p class="label" style="margin-bottom:32px;">Direct</p>
+      <!-- TODO: replace with your real contact email -->
+      <a class="contact-email" href="mailto:hello@playgroundlabs.app">hello@playgroundlabs.app</a>
+
+      <p class="label" style="margin-bottom:16px;">Elsewhere</p>
+      <!-- TODO: replace with your real social links/handles -->
+      <div class="social-list">
+        <a href="#"><span class="dot"></span>X / Twitter — @playgroundlabs</a>
+        <a href="#"><span class="dot"></span>Instagram — @playgroundlabs</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="copy">© 2026 Playground Labs</span>
+    <span class="tagline">No rules.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

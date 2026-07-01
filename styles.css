@@ -44,9 +44,9 @@ img { display: block; }
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand-logo { width: 34px; height: 34px; object-fit: contain; display: block; }
 .wordmark { font-weight: 500; font-size: 18px; line-height: 1; letter-spacing: -0.3px; color: var(--ink); }
-.wordmark .period { color: var(--accent); font-size: 26px; }
+.wordmark .period { color: var(--accent); font-size: 26px; display: inline-block; cursor: pointer; transition: opacity 0.6s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-.nav-links { margin-left: auto; display: flex; gap: 32px; }
+.nav-links { margin-left: auto; display: flex; align-items: center; gap: 32px; position: relative; }
 .nav-links a {
   font-weight: 400; font-size: 14px; line-height: 1;
   color: var(--t-ter);
@@ -239,6 +239,97 @@ img { display: block; }
 }
 .pt-body { margin: 0; font-weight: 400; font-size: 14px; line-height: 1.6; color: var(--t-ter); }
 
+/* ---------- Nav hover-preview panel ---------- */
+.nav-preview {
+  position: absolute; top: calc(100% + 12px); right: 0;
+  background: #fff; border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); overflow: hidden;
+  opacity: 0; pointer-events: none; width: 330px; height: 128px;
+  transition: opacity 0.22s ease,
+              width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 200;
+}
+.nav-preview.show { opacity: 1; pointer-events: auto; }
+.nav-preview__pane { position: absolute; inset: 0; opacity: 0; transition: opacity 0.2s ease; }
+.nav-preview__pane.show { opacity: 1; }
+.nav-preview__apps { padding: 14px; display: flex; gap: 10px; }
+.nav-preview__team { padding: 18px 22px; }
+.mini-card {
+  flex: 1; border-radius: 7px; padding: 12px 10px; height: 100px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.mini-card .m-plat { font-weight: 400; font-size: 9px; line-height: 1; letter-spacing: 1.5px; text-transform: uppercase; }
+.mini-card .m-name { font-weight: 600; font-size: 16px; line-height: 1; letter-spacing: -0.3px; margin-bottom: 3px; }
+.mini-card .m-cat { font-weight: 400; font-size: 10px; line-height: 1; }
+.mini-team-name { font-weight: 700; font-size: 26px; line-height: 0.9; letter-spacing: -1.2px; color: var(--ink); margin-bottom: 10px; }
+.mini-team-role { font-weight: 400; font-size: 9px; line-height: 1; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
+
+/* ---------- Contact page ---------- */
+.contact-intro { padding: 96px var(--pad) 80px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.contact-intro .label { margin-bottom: 24px; }
+.contact-headline { font-weight: 700; font-size: clamp(48px, 8vw, 80px); line-height: 0.9; letter-spacing: -3.2px; color: var(--ink); }
+.contact-headline .accent { color: var(--accent); }
+.contact-sub { margin: 24px 0 0; font-weight: 400; font-size: 18px; line-height: 1.65; color: var(--t-sec); max-width: 420px; }
+
+.contact-grid { padding: 80px var(--pad); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.form { display: flex; flex-direction: column; gap: 28px; max-width: 420px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font-weight: 400; font-size: 10px; line-height: 1; color: var(--t-mut); letter-spacing: 2px; text-transform: uppercase; }
+.field input, .field textarea {
+  border: none; border-bottom: 1px solid var(--border); padding: 8px 0;
+  font: 400 16px/1.4 'Outfit', sans-serif; color: var(--ink); background: transparent;
+  outline: none; transition: border-color 0.2s ease;
+}
+.field textarea { line-height: 1.5; resize: none; }
+.field input::placeholder, .field textarea::placeholder { color: var(--t-mut); }
+.field input:focus, .field textarea:focus { border-bottom-color: var(--ink); }
+.btn-send {
+  align-self: flex-start; background: var(--accent); color: #fff; border: none;
+  border-radius: 8px; padding: 14px 28px; font: 500 14px/1 'Outfit', sans-serif; cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.btn-send:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(232, 92, 58, 0.32); }
+
+.contact-email {
+  display: block; font-weight: 300; font-size: clamp(24px, 3vw, 32px); line-height: 1.3;
+  color: var(--ink); letter-spacing: -0.8px; margin-bottom: 48px; transition: color 0.2s ease;
+}
+.contact-email:hover { color: var(--accent); }
+.social-list { display: flex; flex-direction: column; gap: 12px; }
+.social-list a { display: flex; align-items: center; gap: 10px; font-weight: 400; font-size: 16px; line-height: 1; color: var(--feature); transition: color 0.2s ease; }
+.social-list a:hover { color: var(--ink); }
+
+/* ---------- Home: quieter About beat + scroll cue ---------- */
+.about--quiet { background: #FAFAF8; }
+.scroll-cue { margin-top: 56px; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: opacity 0.6s ease; }
+.scroll-cue.hidden { opacity: 0 !important; pointer-events: none; }
+.scroll-cue span { font-weight: 400; font-size: 10px; line-height: 1; color: var(--t-mut); letter-spacing: 2px; text-transform: uppercase; }
+
+/* ---------- Motion system (gated on JS so content is visible without it) ---------- */
+.js .anim {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js .anim.in { opacity: 1; transform: none; }
+/* spring variant for the hero period + founder label */
+.js .anim-spring { transform: translateY(10px) scale(0.85); transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); transition-duration: 0.6s; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* "tinkered" hover tilt on the home app tiles (flat by default) */
+  .apps-grid .box { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; cursor: pointer; }
+  .apps-grid > .app-card:nth-child(1) .box:hover { transform: rotate(-3deg) translateY(-6px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22); }
+  .apps-grid > .app-card:nth-child(2) .box:hover { transform: rotate(2.5deg) translateY(-6px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); }
+  .apps-grid > .app-card:nth-child(3) .box:hover { transform: rotate(-2deg) translateY(-6px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22); }
+  /* team photo tilt */
+  .photo-img { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .photo-img:hover { transform: rotate(-1.5deg) scale(1.015); }
+  .chevron { transition: transform 0.5s ease; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .anim { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
 /* ---------- Responsive (≤900px) ---------- */
 @media (max-width: 900px) {
   :root { --pad: 24px; }
@@ -251,4 +342,16 @@ img { display: block; }
   .photo-col { border-right: none; border-bottom: 1px solid var(--border); padding: 32px var(--pad); }
   .info-col { padding: 32px var(--pad); }
   .player { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .nav-preview { display: none; }
+}
+
+@media (max-width: 560px) {
+  .nav { padding: 16px var(--pad); }
+  .brand { gap: 8px; }
+  .brand-logo { width: 28px; height: 28px; }
+  .wordmark { font-size: 15px; white-space: nowrap; }
+  .wordmark .period { font-size: 21px; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 13px; }
 }

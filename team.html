@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
 
@@ -16,45 +17,45 @@
   <nav class="nav">
     <a class="brand" href="home.html">
       <img class="brand-logo" src="assets/pl-logo.png" alt="Playground Labs" />
-      <span class="wordmark">Playground Labs<span class="period">.</span></span>
+      <span class="wordmark">Playground Labs<span class="period" data-dot>.</span></span>
     </a>
     <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="apps.html">Apps</a>
+      <a href="apps.html" data-preview="apps">Apps</a>
       <a href="team.html" class="active">Team</a>
+      <a href="contact.html" data-preview="clear">Contact</a>
     </div>
   </nav>
 
   <!-- SUB-HEADER -->
-  <div class="subhead">
+  <div class="subhead anim" data-enter="100">
     <span class="label">The Team</span>
     <span class="idx">01</span>
   </div>
 
   <!-- PROFILE -->
   <div class="profile">
-    <div class="photo-col">
+    <div class="photo-col anim" data-enter="200">
       <img class="photo-img" src="assets/brandon.jpg" alt="Brandon Wilcox, founder of Playground Labs" />
     </div>
 
     <div class="info-col">
       <div>
         <div class="name">
-          <div>Brandon</div>
-          <div>Wilcox</div>
+          <div class="anim" data-enter="260">Brandon</div>
+          <div class="anim" data-enter="380">Wilcox</div>
         </div>
-        <div class="role-row">
+        <div class="role-row anim anim-spring" data-enter="550">
           <span class="role">Founder</span>
           <span class="dot"></span>
         </div>
       </div>
 
       <div>
-        <p class="bio">Building apps that feel obvious, not clever. If it needs a tutorial, it needs a rethink.</p>
+        <p class="bio anim" data-enter="460">Building apps that feel obvious, not clever. If it needs a tutorial, it needs a rethink.</p>
         <div class="meta-rows features">
-          <div class="feature"><span class="flabel">Belief</span><span class="ftext">Great software should feel invisible.</span></div>
-          <div class="feature"><span class="flabel">Rule</span><span class="ftext">Ship it before it's perfect.</span></div>
-          <div class="feature"><span class="flabel">Made</span><span class="ftext">Drift, Nook, Tempo — because they didn't exist yet.</span></div>
+          <div class="feature anim" data-enter="560"><span class="flabel">Belief</span><span class="ftext">Great software should feel invisible.</span></div>
+          <div class="feature anim" data-enter="640"><span class="flabel">Rule</span><span class="ftext">Ship it before it's perfect.</span></div>
+          <div class="feature anim" data-enter="720"><span class="flabel">Made</span><span class="ftext">Drift, Nook, Tempo — because they didn't exist yet.</span></div>
         </div>
       </div>
     </div>
@@ -62,11 +63,11 @@
 
   <!-- PLAYER TWO -->
   <section class="player">
-    <div>
+    <div class="anim" data-reveal data-reveal-delay="0">
       <p class="label" style="margin-bottom:16px;">Growing</p>
       <div class="pt-title">Player<br>Two<span class="accent">?</span></div>
     </div>
-    <div class="pt-right">
+    <div class="pt-right anim" data-reveal data-reveal-delay="150">
       <p class="pt-lead">The playground is getting bigger. We're always looking for people who build with the same instincts.</p>
       <p class="pt-body">No formal process. Just reach out and show us what you've made.</p>
     </div>
@@ -80,5 +81,6 @@
     <span class="tagline">No rules.</span>
   </footer>
 
+  <script src="app.js"></script>
 </body>
 </html>
