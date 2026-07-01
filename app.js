@@ -75,9 +75,9 @@
       panel.className = 'nav-preview';
       panel.innerHTML =
         '<div class="nav-preview__pane nav-preview__apps">' +
-          miniCard('#0D1117', '#fff', 'Drift', 'Travel Journal', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0.3)', '-3deg') +
-          miniCard('#F0EBE1', '#3D2B1F', 'Nook', 'Reading Tracker', 'rgba(60,40,20,0.2)', 'rgba(60,40,20,0.3)', '2deg') +
-          miniCard('#101A28', '#fff', 'Tempo', 'Workout Timer', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0.3)', '-2deg') +
+          miniCard('#0D1117', '#fff', 'Drift', 'Travel Journal', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0.3)') +
+          miniCard('#F0EBE1', '#3D2B1F', 'Nook', 'Reading Tracker', 'rgba(60,40,20,0.2)', 'rgba(60,40,20,0.3)') +
+          miniCard('#101A28', '#fff', 'Tempo', 'Workout Timer', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0.3)') +
         '</div>' +
         '<div class="nav-preview__pane nav-preview__team">' +
           '<div class="mini-team-name">Brandon<br>Wilcox</div>' +
@@ -144,8 +144,8 @@
     }
   });
 
-  function miniCard(bg, fg, name, cat, platC, catC, rot) {
-    return '<div class="mini-card" style="background:' + bg + ';transform:rotate(' + rot + ');">' +
+  function miniCard(bg, fg, name, cat, platC, catC) {
+    return '<div class="mini-card" style="background:' + bg + ';">' +
       '<span class="m-plat" style="color:' + platC + '">iOS</span>' +
       '<div><div class="m-name" style="color:' + fg + '">' + name + '</div>' +
       '<div class="m-cat" style="color:' + catC + '">' + cat + '</div></div></div>';
