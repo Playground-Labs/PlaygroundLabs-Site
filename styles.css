@@ -254,17 +254,19 @@ img { display: block; }
   z-index: 200;
 }
 .nav-preview.show { opacity: 1; pointer-events: auto; }
-.nav-preview__pane { position: absolute; inset: 0; opacity: 0; transition: opacity 0.2s ease; }
+/* Panes are fixed-size (not inset:0) so they never reflow while the panel
+   animates its width/height — the overflow just clips the fading-out pane. */
+.nav-preview__pane { position: absolute; top: 0; right: 0; opacity: 0; transition: opacity 0.2s ease; }
 .nav-preview__pane.show { opacity: 1; }
-.nav-preview__apps { padding: 14px; display: flex; gap: 10px; }
-.nav-preview__team { padding: 18px 22px; }
+.nav-preview__apps { width: 330px; height: 128px; padding: 14px; display: flex; gap: 10px; }
+.nav-preview__team { width: 220px; height: 110px; padding: 18px 22px; }
 .mini-card {
   flex: 1; border-radius: 7px; padding: 12px 10px; height: 100px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .mini-card .m-plat { font-weight: 400; font-size: 9px; line-height: 1; letter-spacing: 1.5px; text-transform: uppercase; }
-.mini-card .m-name { font-weight: 600; font-size: 16px; line-height: 1; letter-spacing: -0.3px; margin-bottom: 3px; }
-.mini-card .m-cat { font-weight: 400; font-size: 10px; line-height: 1; }
+.mini-card .m-name { font-weight: 600; font-size: 16px; line-height: 1; letter-spacing: -0.3px; margin-bottom: 3px; white-space: nowrap; }
+.mini-card .m-cat { font-weight: 400; font-size: 10px; line-height: 1; white-space: nowrap; }
 .mini-team-name { font-weight: 700; font-size: 26px; line-height: 0.9; letter-spacing: -1.2px; color: var(--ink); margin-bottom: 10px; }
 .mini-team-role { font-weight: 400; font-size: 9px; line-height: 1; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
 
