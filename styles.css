@@ -238,7 +238,7 @@ img { display: block; }
   color: var(--ink); letter-spacing: -0.2px; max-width: 420px;
 }
 .pt-body { margin: 0; font-weight: 400; font-size: 14px; line-height: 1.6; color: var(--t-ter); }
-.pt-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; font-weight: 500; font-size: 14px; line-height: 1; color: var(--accent); transition: color 0.2s ease; }
+.pt-link { display: flex; width: fit-content; align-items: center; gap: 8px; margin-top: 28px; font-weight: 500; font-size: 14px; line-height: 1; color: var(--accent); transition: color 0.2s ease; }
 .pt-link span { transition: transform 0.2s ease; }
 .pt-link:hover span { transform: translateX(4px); }
 
