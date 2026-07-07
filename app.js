@@ -77,7 +77,7 @@
         '<div class="nav-preview__pane nav-preview__apps">' +
           miniCard('#4C5BD4', '#fff', 'Flare', 'Social', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
           miniCard('#1A3A38', '#fff', 'EverSaid', 'Public Record', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
-          miniCard('#E6F4FE', '#14233A', 'CeCe', 'Developer Tool', 'rgba(20,35,58,0.55)', 'rgba(20,35,58,0.55)') +
+          miniCard('#F5F1EA', '#1D1A17', 'CeCe', 'Developer Tool', 'rgba(29,26,23,0.55)', 'rgba(29,26,23,0.55)') +
         '</div>' +
         '<div class="nav-preview__pane nav-preview__team">' +
           '<div class="mini-team-name">Brandon<br>Wilcox</div>' +
