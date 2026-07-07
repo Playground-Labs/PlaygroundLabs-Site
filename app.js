@@ -39,7 +39,7 @@
       }
     }
 
-    // ----- Wordmark dot: ambient pulse + click "bounce" easter egg -----
+    // ----- Wordmark dot: ambient bounce + click "bounce" easter egg -----
     var dot = document.querySelector('[data-dot]');
     if (dot) {
       dot.addEventListener('click', function (e) {
@@ -58,13 +58,24 @@
         anim.onfinish = function () { dot._bouncing = false; dot.style.transform = 'scale(1)'; dot.style.opacity = '1'; };
       });
       if (!reduce) {
-        var on = false;
+        // idle: dot lifts, drops, and bounces a few decaying times before settling.
+        // Falls use an accelerating (gravity) ease; rebounds decelerate; each
+        // ground contact squashes (scaleX>1, scaleY<1) against the baseline.
+        var fall = 'cubic-bezier(0.6, 0, 0.9, 0.3)';
+        var rise = 'cubic-bezier(0.1, 0.7, 0.4, 1)';
         setInterval(function () {
           if (dot._bouncing) return;
-          on = !on;
-          dot.style.opacity = on ? '0.35' : '1';
-          dot.style.transform = on ? 'scale(0.65)' : 'scale(1)';
-        }, 2000);
+          dot.animate([
+            { transform: 'translateY(0) scale(1)', easing: 'cubic-bezier(0.33, 0, 0.2, 1)' },
+            { transform: 'translateY(-16px) scale(1)', offset: 0.16, easing: fall },
+            { transform: 'translateY(0) scaleX(1.28) scaleY(0.72)', offset: 0.40, easing: rise },
+            { transform: 'translateY(-9px) scale(1)', offset: 0.58, easing: fall },
+            { transform: 'translateY(0) scaleX(1.16) scaleY(0.84)', offset: 0.73, easing: rise },
+            { transform: 'translateY(-4px) scale(1)', offset: 0.85, easing: fall },
+            { transform: 'translateY(0) scaleX(1.08) scaleY(0.92)', offset: 0.93, easing: rise },
+            { transform: 'translateY(0) scale(1)', offset: 1 }
+          ], { duration: 1300, easing: 'linear' });
+        }, 5000);
       }
     }
 
@@ -75,7 +86,7 @@
       panel.className = 'nav-preview';
       panel.innerHTML =
         '<div class="nav-preview__pane nav-preview__apps">' +
-          miniCard('#4C5BD4', '#fff', 'Flare', 'Social', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
+          miniCard('#1C1813', '#F3EDE5', 'Flare', 'Social', 'rgba(243,237,229,0.6)', 'rgba(243,237,229,0.5)') +
           miniCard('#1A3A38', '#fff', 'EverSaid', 'Public Record', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
           miniCard('#F5F1EA', '#1D1A17', 'CeCe', 'Developer Tool', 'rgba(29,26,23,0.55)', 'rgba(29,26,23,0.55)') +
         '</div>' +

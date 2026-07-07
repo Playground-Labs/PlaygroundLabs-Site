@@ -41,12 +41,12 @@ img { display: block; }
   -webkit-backdrop-filter: blur(12px);
   z-index: 100;
 }
-.brand { display: flex; align-items: center; gap: 10px; }
-/* nudged down 1px: the logo art is slightly top-heavy in its square, so a true
+.brand { display: flex; align-items: center; gap: 13px; }
+/* nudged down: the logo art is slightly top-heavy in its square, so a true
    box-center leaves the ring reading a touch high next to the wordmark */
-.brand-logo { position: relative; top: 1px; width: 34px; height: 34px; object-fit: contain; display: block; }
-.wordmark { font-weight: 500; font-size: 18px; line-height: 1; letter-spacing: -0.3px; color: var(--ink); }
-.wordmark .period { color: var(--accent); font-size: 26px; display: inline-block; cursor: pointer; transition: opacity 0.6s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.brand-logo { position: relative; top: 1px; width: 44px; height: 44px; object-fit: contain; display: block; }
+.wordmark { font-weight: 500; font-size: 23px; line-height: 1; letter-spacing: -0.4px; color: var(--ink); }
+.wordmark .period { color: var(--accent); font-size: 34px; display: inline-block; transform-origin: center bottom; cursor: pointer; transition: opacity 0.6s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
 .nav-links { margin-left: auto; display: flex; align-items: center; gap: 32px; position: relative; }
 .nav-links a {
@@ -130,7 +130,7 @@ img { display: block; }
 .app-card .app-logo { width: 40px; height: 40px; display: block; margin-top: 32px; }
 /* wordmark logo (CeCe): auto width, padded to keep the 40px-tall slot so the
    name row still aligns with the icon cards */
-.app-card .app-logo--wordmark { width: 66px; height: 26px; padding: 7px 0; box-sizing: content-box; }
+.app-card .app-logo--wordmark { width: auto; height: 26px; padding: 7px 0; box-sizing: content-box; }
 .app-card .box > div { margin-top: 40px; }
 .app-card .name { font-weight: 600; font-size: 26px; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
 .app-card .cat  { font-weight: 400; font-size: 12px; line-height: 1; letter-spacing: 0.3px; }
@@ -146,6 +146,11 @@ img { display: block; }
 .box.card--light .name { color: #1D1A17; }
 .box.card--light .cat  { color: rgba(29, 26, 23, 0.55); }
 .box.card--light .desc { color: rgba(29, 26, 23, 0.68); }
+/* warm-dark card scheme (Flare — dark surface, cream ink) */
+.box.card--warm .plat { color: rgba(243, 237, 229, 0.55); }
+.box.card--warm .name { color: #F3EDE5; }
+.box.card--warm .cat  { color: rgba(243, 237, 229, 0.5); }
+.box.card--warm .desc { color: rgba(243, 237, 229, 0.72); }
 
 /* ---------- Home: about ---------- */
 .about {
