@@ -121,19 +121,20 @@ img { display: block; }
   height: 268px; border-radius: 10px; margin-bottom: 16px; padding: 24px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
-.app-card .plat { font-weight: 400; font-size: 10px; line-height: 1; letter-spacing: 2px; text-transform: uppercase; }
+.app-card .plat { font-weight: 500; font-size: 10px; line-height: 1; letter-spacing: 2px; text-transform: uppercase; }
+.app-card .app-logo { width: 40px; height: 40px; display: block; }
 .app-card .name { font-weight: 600; font-size: 26px; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
 .app-card .cat  { font-weight: 400; font-size: 12px; line-height: 1; letter-spacing: 0.3px; }
 .app-card .desc { margin: 0; font-weight: 400; font-size: 14px; line-height: 1.55; color: var(--t-ter); }
 
-/* dark-card text scheme (Drift, Tempo) */
-.box.card--dark .plat { color: rgba(255, 255, 255, 0.2); }
+/* dark-card text scheme (Flare, EverSaid) */
+.box.card--dark .plat { color: rgba(255, 255, 255, 0.55); }
 .box.card--dark .name { color: #ffffff; }
-.box.card--dark .cat  { color: rgba(255, 255, 255, 0.35); }
-/* light-card text scheme (Nook) */
-.box.card--light .plat { color: rgba(60, 40, 20, 0.2); }
-.box.card--light .name { color: #3D2B1F; }
-.box.card--light .cat  { color: rgba(60, 40, 20, 0.35); }
+.box.card--dark .cat  { color: rgba(255, 255, 255, 0.5); }
+/* light-card text scheme (CeCe) */
+.box.card--light .plat { color: rgba(20, 35, 58, 0.5); }
+.box.card--light .name { color: #14233A; }
+.box.card--light .cat  { color: rgba(20, 35, 58, 0.55); }
 
 /* ---------- Home: about ---------- */
 .about {
@@ -162,7 +163,12 @@ img { display: block; }
 
 .app-meta { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
 .app-meta .idx  { font-weight: 700; font-size: 10px; line-height: 1; color: var(--ghost); letter-spacing: 2px; }
-.app-meta .plat { font-weight: 400; font-size: 10px; line-height: 1; color: var(--t-mut); letter-spacing: 2px; text-transform: uppercase; }
+.app-meta .plat { font-weight: 500; font-size: 10px; line-height: 1; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+.app-icon {
+  width: 64px; height: 64px; border-radius: 15px; margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: center;
+}
+.app-icon img { width: 38px; height: 38px; display: block; }
 
 .app-title {
   font-weight: 700; font-size: clamp(48px, 8vw, 80px); line-height: 0.88;
