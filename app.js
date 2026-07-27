@@ -1,5 +1,5 @@
 /* Playground Labs — shared behaviour: entrance/scroll reveals, nav hover-preview,
-   pulsing/clickable wordmark dot, home scroll cue, contact form. Vanilla, no deps.
+   bouncing/clickable wordmark dot, contact form. Vanilla, no deps.
    Reveals are gated on a `.js` class (set in <head>) so content stays visible if
    JS never runs; prefers-reduced-motion collapses all motion to static. */
 (function () {
@@ -120,24 +120,6 @@
       links.addEventListener('mouseleave', hide);
     }
 
-    // ----- Home scroll cue: bobbing chevron, disappears after first scroll -----
-    var cue = document.querySelector('.scroll-cue');
-    if (cue && !reduce) {
-      var chev = cue.querySelector('.chevron');
-      var up = false;
-      var chevInt = setInterval(function () {
-        if (chev) { up = !up; chev.style.transform = up ? 'translateY(3px)' : 'translateY(0)'; }
-      }, 550);
-      var onScroll = function () {
-        if (window.scrollY > 40) {
-          cue.classList.add('hidden');
-          clearInterval(chevInt);
-          window.removeEventListener('scroll', onScroll);
-        }
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-    }
-
     // ----- Contact form (UI only, no backend) -----
     var form = document.querySelector('.form');
     if (form) {
@@ -148,7 +130,7 @@
         e.preventDefault();
         if (sent || !btn) return;
         sent = true;
-        btn.textContent = 'Sent — thank you! ✓';
+        btn.textContent = 'Sent. Thank you! ✓';
         clearTimeout(sentT);
         sentT = setTimeout(function () { sent = false; btn.textContent = label; }, 2500);
       });
