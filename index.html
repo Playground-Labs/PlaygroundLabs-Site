@@ -3,103 +3,109 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Playground Labs — coming soon</title>
-  <meta name="description" content="Playground Labs is a small studio building its own apps. The site is on its way." />
-
-  <!--
-    ponytail: zero-build coming-soon placeholder. Same setup as the full site.
-    The finished landing page lives in home.html; promote it back to index.html at go-live.
-    Production upgrade when LCP matters: swap the Tailwind Play CDN for a purged
-    `npx @tailwindcss/cli` build and self-host the fonts.
-  -->
+  <title>Playground Labs · Independent App Studio</title>
+  <meta name="description" content="Playground Labs is an independent app studio. We build apps that solve real problems and change how people live. Small team, big ideas." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'media',
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            accent: { DEFAULT: '#2D5BFF', ink: '#1E3FCC' },
-          },
-        },
-      },
-    };
-  </script>
-
-  <style>
-    @media (prefers-reduced-motion: no-preference) {
-      @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(-1deg); }
-        50%      { transform: translateY(-12px) rotate(1deg); }
-      }
-      .anim-float { animation: float 6s ease-in-out infinite; }
-
-      @keyframes loadFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-      .load-fade { opacity: 0; animation: loadFade .7s cubic-bezier(.16,1,.3,1) forwards; }
-      .load-fade.d1 { animation-delay: .08s; }
-      .load-fade.d2 { animation-delay: .16s; }
-      .load-fade.d3 { animation-delay: .24s; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .load-fade { opacity: 1 !important; transform: none !important; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
+<body>
 
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-accent selection:text-white">
-
-  <!-- logo mark: swing set in a ring, inline SVG, currentColor (inverts in dark) -->
-  <svg width="0" height="0" class="hidden" aria-hidden="true">
-    <symbol id="pl-logo" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="60" cy="60" r="53" stroke-width="5" />
-      <path d="M27 42 L99 33" stroke-width="7" />
-      <path d="M34 40 L24 92" stroke-width="7" />
-      <path d="M34 40 L44 92" stroke-width="7" />
-      <path d="M86 38 L76 92" stroke-width="7" />
-      <path d="M86 38 L96 92" stroke-width="7" />
-      <path d="M52 40 L50 74" stroke-width="5" />
-      <path d="M64 38 L66 73" stroke-width="5" />
-      <path d="M47 76 L69 72" stroke-width="7" />
-    </symbol>
-  </svg>
-
-  <main class="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6 text-center">
-    <!-- soft cobalt ambient wash, never AI-purple -->
-    <div aria-hidden="true" class="pointer-events-none absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl dark:bg-accent/15"></div>
-
-    <div class="relative flex flex-col items-center">
-      <span class="load-fade anim-float text-slate-900 dark:text-slate-100">
-        <svg class="h-24 w-24 sm:h-28 sm:w-28" aria-hidden="true"><use href="#pl-logo" /></svg>
-      </span>
-
-      <span class="load-fade d1 mt-6 font-display text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400">
-        Playground Labs
-      </span>
-
-      <h1 class="load-fade d2 mt-4 font-display text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
-        Something fun is<br class="hidden sm:block" />
-        <span class="text-accent">on the way.</span>
-      </h1>
-
-      <p class="load-fade d2 mt-5 max-w-[42ch] text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-        A small studio building our own apps. The site is almost ready.
-      </p>
-
-      <a href="mailto:hello@playgroundlabs.app"
-         class="load-fade d3 mt-8 inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:bg-accent-ink hover:-translate-y-0.5 active:scale-[0.98]">
-        Say hi
-      </a>
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="brand" href="./">
+      <img class="brand-logo" src="assets/pl-logo.png" alt="Playground Labs" />
+      <span class="wordmark">Playground Labs<span class="period" data-dot>.</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="apps.html" data-preview="apps">Apps</a>
+      <a href="team.html" data-preview="team">Team</a>
+      <a href="contact.html" data-preview="clear">Contact</a>
     </div>
+  </nav>
 
-    <p class="load-fade d3 absolute bottom-8 text-sm text-slate-400 dark:text-slate-500">© 2026 Playground Labs</p>
-  </main>
+  <!-- HERO -->
+  <header class="hero">
+    <p class="eyebrow label anim" data-enter="100">Independent App Studio</p>
+    <div class="d-light anim" data-enter="260">There are</div>
+    <div class="d-bold anim" data-enter="460"><span>no rules</span><span class="accent anim anim-spring" data-enter="700" style="display:inline-block;">.</span></div>
+    <p class="subtext anim" data-enter="860">Apps that solve real problems. Small team. Big ideas. No bloat.</p>
+
+    <a class="hero-cta anim" data-enter="1100" href="apps.html">See what we're building <span aria-hidden="true">&rarr;</span></a>
+  </header>
+
+  <div class="rule"></div>
+
+  <!-- OUR APPS -->
+  <section class="section" id="work">
+    <p class="label anim" data-reveal data-reveal-delay="0">Our Apps</p>
+    <div class="apps-grid">
+
+      <article class="app-card anim" data-reveal data-reveal-delay="60">
+        <div class="box card--light" style="background:#F2F2F3;">
+          <span class="plat">Coming Soon</span>
+          <img class="app-logo app-logo--wordmark" src="assets/apps/node.svg" alt="" style="width:88px" />
+          <div>
+            <div class="name">Node</div>
+            <div class="cat">People Graph</div>
+            <p class="desc">Your private people graph. Remember who you met, where, and who they know.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="app-card anim" data-reveal data-reveal-delay="160">
+        <div class="box card--warm" style="background:#1C1813;">
+          <span class="plat">Coming Soon</span>
+          <img class="app-logo app-logo--wordmark" src="assets/apps/flare.svg" alt="" style="width:72px" />
+          <div>
+            <div class="name">Flare</div>
+            <div class="cat">Social</div>
+            <p class="desc">Down to hang? One tap tells your friends you're free, and shows who else is.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="app-card anim" data-reveal data-reveal-delay="260">
+        <div class="box card--dark" style="background:#1A3A38;">
+          <span class="plat">Coming Soon</span>
+          <img class="app-logo" src="assets/apps/eversaid.svg" alt="" />
+          <div>
+            <div class="name">EverSaid</div>
+            <div class="cat">Public Record</div>
+            <p class="desc">A searchable, sourced record of what public figures have actually said.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ABOUT (quieter closing beat) -->
+  <section class="about about--quiet anim" id="about" data-reveal>
+    <p class="label">About</p>
+    <div>
+      <p class="lead">We're a small, independent studio. We build apps that solve real problems and change how people live.</p>
+      <p class="body">We pick problems worth solving and build until they're right. A tight team with strong opinions and the conviction to ship.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="copy">© 2026 Playground Labs</span>
+    <div class="footer-right">
+      <a class="gh" href="https://github.com/Playground-Labs" target="_blank" rel="noopener" aria-label="Playground Labs on GitHub">
+        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <span class="tagline">No rules.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
