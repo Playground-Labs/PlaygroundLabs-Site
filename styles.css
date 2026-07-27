@@ -227,6 +227,9 @@ img { display: block; }
 .slot.r10 { border-radius: 10px; }
 /* true phone aspect, so real screenshots drop in with no crop */
 .shot  { height: auto; aspect-ratio: 1206 / 2622; }
+/* desktop-app variant (EverSaid): one wide shot instead of two phone slots */
+.shots--single { grid-template-columns: 1fr; }
+.shot--desktop { aspect-ratio: 3956 / 2970; }
 .slot img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
 .photo { height: 440px; }
 .photo-img { width: 100%; height: 440px; object-fit: cover; border-radius: 10px; display: block; }
