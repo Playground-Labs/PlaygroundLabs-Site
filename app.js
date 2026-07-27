@@ -86,9 +86,9 @@
       panel.className = 'nav-preview';
       panel.innerHTML =
         '<div class="nav-preview__pane nav-preview__apps">' +
+          miniCard('#F2F2F3', '#1D1F20', 'Node', 'People Graph', 'rgba(29,31,32,0.55)', 'rgba(29,31,32,0.55)') +
           miniCard('#1C1813', '#F3EDE5', 'Flare', 'Social', 'rgba(243,237,229,0.6)', 'rgba(243,237,229,0.5)') +
           miniCard('#1A3A38', '#fff', 'EverSaid', 'Public Record', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
-          miniCard('#F5F1EA', '#1D1A17', 'CeCe', 'Developer Tool', 'rgba(29,26,23,0.55)', 'rgba(29,26,23,0.55)') +
         '</div>' +
         '<div class="nav-preview__pane nav-preview__team">' +
           '<div class="mini-team-name">Brandon<br>Wilcox</div>' +
