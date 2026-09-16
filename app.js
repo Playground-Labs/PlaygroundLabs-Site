@@ -86,9 +86,9 @@
       panel.className = 'nav-preview';
       panel.innerHTML =
         '<div class="nav-preview__pane nav-preview__apps">' +
+          miniCard('#1F1F1F', '#fff', 'Arena', 'AI Debate', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
           miniCard('#F2F2F3', '#1D1F20', 'Node', 'People Graph', 'rgba(29,31,32,0.55)', 'rgba(29,31,32,0.55)') +
           miniCard('#1C1813', '#F3EDE5', 'Flare', 'Social', 'rgba(243,237,229,0.6)', 'rgba(243,237,229,0.5)') +
-          miniCard('#1A3A38', '#fff', 'EverSaid', 'Public Record', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.5)') +
         '</div>' +
         '<div class="nav-preview__pane nav-preview__team">' +
           '<div class="mini-team-name">Brandon<br>Wilcox</div>' +
@@ -104,6 +104,7 @@
       function show(which) {
         clearTimeout(hideT);
         var s = sizes[which] || sizes.apps;
+        links.style.setProperty('--preview-width', s.w + 'px');
         panel.style.width = s.w + 'px';
         panel.style.height = s.h + 'px';
         panel.classList.add('show');
@@ -117,6 +118,7 @@
         var p = a.getAttribute('data-preview');
         a.addEventListener('mouseenter', function () { p === 'clear' ? clear() : show(p); });
       });
+      panel.addEventListener('mouseenter', function () { clearTimeout(hideT); });
       links.addEventListener('mouseleave', hide);
     }
 
@@ -138,9 +140,9 @@
   });
 
   function miniCard(bg, fg, name, cat, platC, catC) {
-    return '<div class="mini-card" style="background:' + bg + ';">' +
+    return '<a class="mini-card" href="apps.html#' + name.toLowerCase() + '" style="background:' + bg + ';">' +
       '<span class="m-plat" style="color:' + platC + '">Soon</span>' +
       '<div><div class="m-name" style="color:' + fg + '">' + name + '</div>' +
-      '<div class="m-cat" style="color:' + catC + '">' + cat + '</div></div></div>';
+      '<div class="m-cat" style="color:' + catC + '">' + cat + '</div></div></a>';
   }
 })();
