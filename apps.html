@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Apps · Playground Labs</title>
-  <meta name="description" content="The apps Playground Labs is building: Node, Flare, and EverSaid. All coming soon." />
+  <meta name="description" content="The apps Playground Labs is building: Arena, Node, and Flare. All coming soon." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
       <span class="wordmark">Playground Labs<span class="period" data-dot>.</span></span>
     </a>
     <div class="nav-links">
-      <a href="apps.html" class="active">Apps</a>
+      <a href="apps.html" class="active" data-preview="apps">Apps</a>
       <a href="team.html" data-preview="team">Team</a>
       <a href="contact.html" data-preview="clear">Contact</a>
     </div>
@@ -32,11 +32,35 @@
     <span class="idx">03</span>
   </div>
 
-  <!-- APP 01: NODE (info left / screens right) -->
-  <section class="app-row">
+  <!-- APP 01: ARENA (info left / screens right) -->
+  <section class="app-row app-row--desktop" id="arena">
     <div class="anim" data-reveal data-reveal-delay="0">
       <div class="app-meta">
         <span class="idx">01</span>
+        <span class="plat">Coming Soon</span>
+      </div>
+      <div class="app-icon app-icon--full"><img src="assets/apps/arena.png" alt="" /></div>
+      <div class="app-title">Arena</div>
+      <div class="cat-row">
+        <span class="cat">AI Debate</span>
+        <span class="dot"></span>
+      </div>
+      <p class="app-desc">A Mac app where AI agents debate your plan. Set the brief, watch them argue the trade-offs, and choose the final answer or let them reach agreement.</p>
+    </div>
+    <div class="shots shots--single anim" data-reveal data-reveal-delay="120">
+      <div class="slot r16 shot shot--desktop"><img src="assets/apps/arena-conversation.png" alt="Arena's conversation view: AI agents debating a plan and reaching consensus" /></div>
+    </div>
+  </section>
+
+  <!-- APP 02: NODE (screens left / info right) -->
+  <section class="app-row reverse" id="node">
+    <div class="shots anim" data-reveal data-reveal-delay="120">
+      <div class="slot r16 shot"><img src="assets/apps/node-graph.png" alt="Node's graph screen, showing people connected by links" /></div>
+      <div class="slot r16 shot"><img src="assets/apps/node-profile.png" alt="Node's profile screen, showing which card fields are shared" /></div>
+    </div>
+    <div class="anim" data-reveal data-reveal-delay="0">
+      <div class="app-meta">
+        <span class="idx">02</span>
         <span class="plat">Coming Soon</span>
       </div>
       <div class="app-icon" style="background:#F2F2F3;"><img class="wordmark" src="assets/apps/node.svg" alt="" style="width:46px;height:14px" /></div>
@@ -47,21 +71,13 @@
       </div>
       <p class="app-desc">A private graph of the people you meet. Capture how you met in seconds, link people together, and keep the context you'd otherwise forget.</p>
     </div>
-    <div class="shots anim" data-reveal data-reveal-delay="120">
-      <div class="slot r16 shot"><img src="assets/apps/node-graph.png" alt="Node's graph screen, showing people connected by links" /></div>
-      <div class="slot r16 shot"><img src="assets/apps/node-profile.png" alt="Node's profile screen, showing which card fields are shared" /></div>
-    </div>
   </section>
 
-  <!-- APP 02: FLARE (screens left / info right) -->
-  <section class="app-row reverse">
-    <div class="shots anim" data-reveal data-reveal-delay="120">
-      <div class="slot r16 shot"><img src="assets/apps/flare-welcome.png" alt="Flare's welcome screen, with friends orbiting a flare on a radar" /></div>
-      <div class="slot r16 shot"><img src="assets/apps/flare-send.png" alt="Flare's send screen: hold to flare, visible to your friends" /></div>
-    </div>
+  <!-- APP 03: FLARE (info left / screens right) -->
+  <section class="app-row" id="flare">
     <div class="anim" data-reveal data-reveal-delay="0">
       <div class="app-meta">
-        <span class="idx">02</span>
+        <span class="idx">03</span>
         <span class="plat">Coming Soon</span>
       </div>
       <div class="app-icon" style="background:#1C1813;"><img class="wordmark" src="assets/apps/flare.svg" alt="" style="width:50px;height:18px" /></div>
@@ -72,25 +88,9 @@
       </div>
       <p class="app-desc">Down to hang? Send up a flare. One tap lets your friends know you're free right now, and shows you who else is up for it. Quick, low-pressure, private.</p>
     </div>
-  </section>
-
-  <!-- APP 03: EVERSAID (info left / screens right) -->
-  <section class="app-row">
-    <div class="anim" data-reveal data-reveal-delay="0">
-      <div class="app-meta">
-        <span class="idx">03</span>
-        <span class="plat">Coming Soon</span>
-      </div>
-      <div class="app-icon" style="background:#1A3A38;"><img src="assets/apps/eversaid.svg" alt="" /></div>
-      <div class="app-title">EverSaid</div>
-      <div class="cat-row">
-        <span class="cat">Public Record</span>
-        <span class="dot"></span>
-      </div>
-      <p class="app-desc">A living, searchable record of what public figures have actually said, with every statement sourced and kept in context.</p>
-    </div>
-    <div class="shots shots--single anim" data-reveal data-reveal-delay="120">
-      <div class="slot r16 shot shot--desktop"><img src="assets/apps/eversaid-explore.png" alt="EverSaid's explore page: curated collections and live trending statements" /></div>
+    <div class="shots anim" data-reveal data-reveal-delay="120">
+      <div class="slot r16 shot"><img src="assets/apps/flare-welcome.png" alt="Flare's welcome screen, with friends orbiting a flare on a radar" /></div>
+      <div class="slot r16 shot"><img src="assets/apps/flare-send.png" alt="Flare's send screen: hold to flare, visible to your friends" /></div>
     </div>
   </section>
 

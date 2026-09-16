@@ -45,11 +45,11 @@ img { display: block; }
   z-index: 100;
 }
 .brand { display: flex; align-items: center; gap: 13px; }
-/* nudged down: the logo art is slightly top-heavy in its square, so a true
-   box-center leaves the ring reading a touch high next to the wordmark */
-.brand-logo { position: relative; top: 1px; width: 44px; height: 44px; object-fit: contain; display: block; }
+/* Align the visible ring with the title's letterforms at both logo sizes. */
+.brand-logo { width: 44px; height: 44px; object-fit: contain; display: block; transform: translateY(6%); }
 .wordmark { font-weight: 500; font-size: 23px; line-height: 1; letter-spacing: -0.4px; color: var(--ink); }
-.wordmark .period { color: var(--accent); font-size: 34px; display: inline-block; transform-origin: center bottom; cursor: pointer; transition: opacity 0.6s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); }
+/* The oversized dot must not enlarge the title's line box. */
+.wordmark .period { color: var(--accent); font-size: 34px; line-height: 0; display: inline-block; transform-origin: center bottom; cursor: pointer; transition: opacity 0.6s ease, transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
 .nav-links { margin-left: auto; display: flex; align-items: center; gap: 32px; position: relative; }
 .nav-links a {
@@ -131,6 +131,8 @@ img { display: block; }
    line across all cards regardless of description length */
 .app-card .plat { font-weight: 500; font-size: 10px; line-height: 1; letter-spacing: 2px; text-transform: uppercase; }
 .app-card .app-logo { width: 40px; height: 40px; display: block; margin-top: 32px; }
+/* Fill the icon slot, accounting for the Mac app icon's transparent padding. */
+.app-card .app-logo--full { transform: scale(1.23); }
 /* wordmark logo (Flare, Node): auto width, padded to keep the 40px-tall slot so the
    name row still aligns with the icon cards */
 .app-card .app-logo--wordmark { width: auto; height: 26px; padding: 7px 0; box-sizing: content-box; }
@@ -139,7 +141,7 @@ img { display: block; }
 .app-card .cat  { font-weight: 400; font-size: 12px; line-height: 1; letter-spacing: 0.3px; }
 .app-card .desc { margin: 12px 0 0; font-weight: 400; font-size: 13px; line-height: 1.5; }
 
-/* dark-card text scheme (Flare, EverSaid) */
+/* dark-card text scheme (Flare, Arena) */
 .box.card--dark .plat { color: rgba(255, 255, 255, 0.55); }
 .box.card--dark .name { color: #ffffff; }
 .box.card--dark .cat  { color: rgba(255, 255, 255, 0.5); }
@@ -174,11 +176,13 @@ img { display: block; }
 
 /* ---------- Apps detail: rows ---------- */
 .app-row {
+  scroll-margin-top: 96px;
   padding: 72px var(--pad);
   display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: start;
   border-bottom: 1px solid var(--border);
 }
 .app-row.reverse { grid-template-columns: 420px 1fr; }
+.app-row--desktop { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 64px; }
 
 .app-meta { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
 .app-meta .idx  { font-weight: 700; font-size: 10px; line-height: 1; color: var(--ghost); letter-spacing: 2px; }
@@ -189,6 +193,8 @@ img { display: block; }
 }
 .app-icon img { width: 38px; height: 38px; display: block; }
 .app-icon img.wordmark { width: 46px; height: 18px; }
+.app-icon--full { overflow: hidden; }
+.app-icon--full img { width: 100%; height: 100%; transform: scale(1.23); }
 
 .app-title {
   font-weight: 700; font-size: clamp(48px, 8vw, 80px); line-height: 0.88;
@@ -227,9 +233,9 @@ img { display: block; }
 .slot.r10 { border-radius: 10px; }
 /* true phone aspect, so real screenshots drop in with no crop */
 .shot  { height: auto; aspect-ratio: 1206 / 2622; }
-/* desktop-app variant (EverSaid): one wide shot instead of two phone slots */
+/* desktop-app variant (Arena): one wide shot instead of two phone slots */
 .shots--single { grid-template-columns: 1fr; }
-.shot--desktop { aspect-ratio: 3956 / 2970; }
+.shot--desktop { aspect-ratio: 2240 / 1520; }
 .slot img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
 .photo { height: 440px; }
 .photo-img { width: 100%; height: 440px; object-fit: cover; border-radius: 10px; display: block; }
@@ -280,21 +286,26 @@ img { display: block; }
 .pt-link:hover span { transform: translateX(4px); }
 
 /* ---------- Nav hover-preview panel ---------- */
+/* Keep the pointer inside the navigation while crossing the visual gap. */
+.nav-links:has(.nav-preview.show)::after {
+  content: ''; position: absolute; top: 100%; right: 0;
+  width: var(--preview-width); height: 12px;
+}
 .nav-preview {
   position: absolute; top: calc(100% + 12px); right: 0;
   background: #fff; border: 1px solid var(--border); border-radius: 10px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); overflow: hidden;
-  opacity: 0; pointer-events: none; width: 330px; height: 128px;
+  opacity: 0; visibility: hidden; pointer-events: none; width: 330px; height: 128px;
   transition: opacity 0.22s ease,
               width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.32s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 200;
 }
-.nav-preview.show { opacity: 1; pointer-events: auto; }
+.nav-preview.show { opacity: 1; visibility: visible; pointer-events: auto; }
 /* Panes are fixed-size (not inset:0) so they never reflow while the panel
    animates its width/height — the overflow just clips the fading-out pane. */
-.nav-preview__pane { position: absolute; top: 0; right: 0; opacity: 0; transition: opacity 0.2s ease; }
-.nav-preview__pane.show { opacity: 1; }
+.nav-preview__pane { position: absolute; top: 0; right: 0; opacity: 0; visibility: hidden; transition: opacity 0.2s ease; }
+.nav-preview__pane.show { opacity: 1; visibility: inherit; }
 .nav-preview__apps { width: 330px; height: 128px; padding: 14px; display: flex; gap: 10px; }
 .nav-preview__team { width: 220px; height: 110px; padding: 18px 22px; }
 .mini-card {
